@@ -20,16 +20,14 @@ class Portfolio:
     def add(self, *moneys):
         self.moneys.extend(moneys)
 
-    def evaluate(self, currency):
-        #total = functools.reduce(operator.add, map(lambda m: self.__convert(m, currency), self.moneys), 0)
-
+    def evaluate(self, bank, currency):
         total = 0.0
         failures = []
         for m in self.moneys:
             try:
-                total += self.__convert(m, currency)
-            except KeyError as ke:
-                failures.append(ke)
+                total += bank.convert(m, currency).amount
+            except Exception as ex:
+                failures.append(ex)
 
         if len(failures) == 0:
             return Money(total, currency)
