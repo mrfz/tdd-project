@@ -15,8 +15,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{matrix.python-version}}
-        name: Checkout code
-        uses: actions/chevkout@v2
-        name: Test
-        run: python py/test_money.py -v
-        shell: bash
+      name: Checkout code
+      uses: actions/chevkout@v2
+      name: Test
+      run: python py/test_money.py -v
+      shell: bash
